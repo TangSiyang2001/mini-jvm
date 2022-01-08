@@ -103,3 +103,7 @@ mini-jvm HelloWold hello mini-jvm
 - [JVM 字节码从入门到精通](https://juejin.im/book/5c25811a6fb9a049ec6b23ee/)
 - [自己动手写Java虚拟机](https://book.douban.com/subject/26802084/)
 
+## 其他
+
+新项目地址 [mini-jvm_x](https://github.com/mini-mo/mini-jvm_x), 使用多种语言实现。
+
