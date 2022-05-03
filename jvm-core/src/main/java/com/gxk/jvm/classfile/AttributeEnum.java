@@ -1,5 +1,9 @@
 package com.gxk.jvm.classfile;
 
+/**
+ * jvm的属性表中的枚举类
+ * 《Java虚拟机规范》JavaSE8第4章4.7小结
+ */
 public abstract class AttributeEnum {
 
   // Five attributes are critical to correct interpretation of the class file by the Java Virtual Machine:

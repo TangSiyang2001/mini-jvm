@@ -8,6 +8,9 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.Objects;
 
+/**
+ * 搜索类所在目录的搜索
+ */
 public class DirEntry implements Entry {
 
   public final String dirPath;
@@ -15,6 +18,7 @@ public class DirEntry implements Entry {
   public DirEntry(String dirPath) {
     this.dirPath = dirPath;
   }
+
 
   @Override
   public ClassFile findClass(String clazzName) {

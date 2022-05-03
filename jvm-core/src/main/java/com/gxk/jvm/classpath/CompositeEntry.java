@@ -3,6 +3,10 @@ package com.gxk.jvm.classpath;
 import com.gxk.jvm.classfile.ClassFile;
 import java.util.List;
 
+/** 组合模式
+ * 多个类路径 搜索实现类
+ * 把每个小路径都转换成具体的搜索实例
+ */
 public class CompositeEntry implements Entry {
 
   private final List<Entry> entries;

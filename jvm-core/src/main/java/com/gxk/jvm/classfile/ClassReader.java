@@ -27,8 +27,17 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 类文件的读取和解析
+ */
 public abstract class ClassReader {
 
+  /**
+   * 读class文件
+   * @param path
+   * @return
+   * @throws IOException
+   */
   public static ClassFile read(String path) throws IOException {
 
     try (InputStream is = new FileInputStream(path);
@@ -39,30 +48,53 @@ public abstract class ClassReader {
     }
   }
 
+  /**
+   * 解析class文件
+   * @param is
+   * @return 类结构
+   * @throws IOException
+   */
   public static ClassFile read(DataInputStream is) throws IOException {
+    //读前四个字节为魔数 并返回读取的整数值
     int magic = is.readInt();
+    //再读两个字节次版本号
     int minorVersion = is.readUnsignedShort();
+    //继续读两个字节为主版本号
     int majorVersion = is.readUnsignedShort();
 
+    //常量池表大小
     int cpSize = is.readUnsignedShort();
+    //表头给出的常量池大小比实际大1。假设表头给出的值是n，那么常
+    //量池的实际大小是n–1。第二，有效的常量池索引是1~n–1。0是无效索引，表示不指向任何常量
     ConstantPool constantPool = readConstantPool(is, cpSize - 1);
 
+    //类访问标志
     int accessFlag = is.readUnsignedShort();
+    //类索引
     int thisClass = is.readUnsignedShort();
+    //超类索引
     int superClass = is.readUnsignedShort();
-
+    //接口数
     int interfaceCount = is.readUnsignedShort();
+    //解析接口结构类
     Interfaces interfaces = readInterfaces(is, interfaceCount, constantPool);
 
+    //字段数
     int fieldCount = is.readUnsignedShort();
+    //解析字段结构
     Fields fields = readFields(is, fieldCount, constantPool);
 
+    //方法数
     int methodCount = is.readUnsignedShort();
+    //解析方法结构
     Methods methods = readMethods(is, methodCount, constantPool);
 
+    //属性数
     int attributeCount = is.readUnsignedShort();
+    //解析属性结构
     Attributes attributes = readAttributes(is, attributeCount, constantPool);
 
+    //放回一个类结构对象
     return new ClassFile(
         magic,
         minorVersion,

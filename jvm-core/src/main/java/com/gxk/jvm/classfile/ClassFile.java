@@ -7,25 +7,26 @@ import com.gxk.jvm.classfile.attribute.SourceFile;
  * <a href="https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-4.html#jvms-4.1">
  * </a>https://docs.oracle.com/javase/specs/jvms/se8/html/jvms-4.html#jvms-4.1</a>
  * <p>
+ *     类结构用于解析类
  */
 public class ClassFile {
 
-  public final int magic;
-  public final int minorVersion;
-  public final int majorVersion;
-  public final int constantPoolSize;
-  public final ConstantPool cpInfo;
-  public final int accessFlags;
-  public final int thisClass;
-  public final int superClass;
-  public final int interfacesCount;
-  public final Interfaces interfaces;
-  public final int fieldCount;
-  public final Fields fields;
-  public final int methodsCount;
-  public final Methods methods;
-  public final int attributesCount;
-  public final Attributes attributes;
+  public final int magic;//魔数,确认是否能让虚拟机接受的class文件 在java中 通常为0xCAFEBABE（咖啡宝贝？）
+  public final int minorVersion;//jvm的次版本号
+  public final int majorVersion;//jvm的主版本号
+  public final int constantPoolSize;//常量池大小 用来解析后面的常量池
+  public final ConstantPool cpInfo;//常量池结构
+  public final int accessFlags;//类访问标志,16位的“bitmask”指出class文件定义的是类还是接口，访问级别是public还是private，
+  public final int thisClass;//类索引,class文件存储的类名类似完全限定名
+  public final int superClass;//父类索引,同上
+  public final int interfacesCount;//接口索引数
+  public final Interfaces interfaces;//接口索引表，给出该类实现的所有接口的名字
+  public final int fieldCount;//字段数
+  public final Fields fields;//字段结构，存储字段信息
+  public final int methodsCount;//方法数
+  public final Methods methods;//方法结构，存储方法信息
+  public final int attributesCount;//属性数
+  public final Attributes attributes;//属性结构，存储属性信息
 
 
   // ext info
